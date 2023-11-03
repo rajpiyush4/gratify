@@ -1,6 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const CommentSchema = new Schema({
+    //change ids type to ObjectId
     entryId:{
         type: String
     },
@@ -11,7 +12,7 @@ const CommentSchema = new Schema({
         type: String
     },
     createdAt:{
-        type: String
+        type: String //change it to Date type
     },
     parentId:{
         type: String

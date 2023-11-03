@@ -1,13 +1,24 @@
+import MainHeader from "@/components/MainHeader"
+import GratitudeForm from "@/components/GratitudeForm"
+import { checkAuth } from "@/actions/checkAuth"
+import { redirect } from "next/navigation"
 
-function page() {
-    return (
-      <main className="w-screen h-screen bg-black/5 flex justify-center items-center">
-            <section className="min-w-[300px] w-1/3 bg-amber-200 h-1/2 border border-amber-50 rounded-md">
-              hi
-            </section>
-      </main>
-      
-    )
+
+async function page() {
+  const check = await checkAuth()
+  if(!check){
+    redirect('/api/auth/signin')
   }
-  
-  export default page
+
+  return (
+    <main className="p-4 h-screen">
+      <MainHeader/>
+      <div className="text-3xl font-fantasy font-bold p-4">ScratchPad</div>
+      <GratitudeForm/>
+      
+    </main>
+
+  )
+}
+
+export default page

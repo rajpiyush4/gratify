@@ -1,5 +1,5 @@
 // import Signin from "@/components/Signin"
-import Header from "@/components/header"
+import MainHeader from "@/components/MainHeader"
 import HeroSection from '@/components/HeroSection'
 import { checkAuth } from "@/actions/checkAuth"
 import {redirect} from 'next/navigation'
@@ -9,9 +9,10 @@ export default async function Home() {
   if (user) {
     redirect('/home')
   }
+
   return (
-    <main className="max-w-5xl max-md:px-4 h-screen m-auto">
-        <Header/>
+    <main className=" h-screen m-auto">
+        <MainHeader/>
         <HeroSection/>
     </main>
   )

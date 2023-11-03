@@ -4,14 +4,37 @@
 
 @layer base{
     html{
-        /* @apply bg-yellow-300 font-bold text-lg */
-        @apply bg-amber-100
+        @apply bg-white-l
     }
+    button{
+        @apply font-mono
+    }
+}
+
+.shadow-custom{
+    transition: .3s;
 }
 
 .shadow-custom:hover{
     transform: translate(-4px , -4px);
     box-shadow: 5px 5px 0 black;
+}
+.shadow-static-custom{
+    transform: translate(-4px , -4px);
+    box-shadow: 5px 5px 0 black;
+}
+.shadow-custom-1{
+    transform: translate(-4px , -4px);
+    box-shadow: 5px 5px 0 black;
+}
+.shadow-custom-1:hover{
+    transform: translate(0 , 0px);
+    box-shadow: none;
+}
+
+.scroll_none::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }
 
 .font-fantasy{

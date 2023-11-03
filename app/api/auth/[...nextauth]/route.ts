@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db"
 import NextAuth, {AuthOptions} from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import User from '@/models/users'
+import { createUsername } from "@/actions/createUsername"
 
 type Profile={
   sub?: string
@@ -9,7 +10,6 @@ type Profile={
   email?: string
   image?: string
   picture?: string
-
 }
 
 export const authOptions: AuthOptions = ({
@@ -35,6 +35,7 @@ export const authOptions: AuthOptions = ({
     async session({ session }) {
       return session
     },
+    
 
     async signIn({profile}:{profile?:Profile|undefined}) {
       try {
@@ -42,11 +43,14 @@ export const authOptions: AuthOptions = ({
         const userExist = await User.findOne({ email: profile?.email })
 
         if (!userExist){
+          const encoded = createUsername(profile?.email);
+          const firstname = profile?.name?.split(' ')[0]
           const user = await User.create({
             name: profile?.name,
             email: profile?.email,
             profileImg: profile?.picture,
             bio: "I'm a person",
+            username: `${firstname?.toLowerCase()}${encoded}`
           })
           
         }

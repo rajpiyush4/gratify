@@ -1,10 +1,13 @@
-import Header from '@/components/header'
+import MainHeader from '@/components/MainHeader'
 import { checkAuth } from '@/actions/checkAuth'
 import { redirect } from 'next/navigation'
 
-async function layout({ children, modal }: {
+
+async function layout({ children, modal, status, comment }: {
     children: React.ReactNode,
-    modal: React.ReactNode
+    modal: React.ReactNode,
+    status: React.ReactNode,
+    comment: React.ReactNode
 }) {
     const user = await checkAuth()
     if (!user) {
@@ -12,10 +15,14 @@ async function layout({ children, modal }: {
     }
 
     return (
-        <main className="max-w-5xl max-md:px-4 h-screen m-auto">
-            <Header />
+        <main className="m-auto">
+            <MainHeader />
             {modal}
-            {children}
+            <section className='flex w-full'>
+                {children}
+                {status}
+                {comment}
+            </section>
         </main>
     )
 }

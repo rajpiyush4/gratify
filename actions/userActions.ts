@@ -1,10 +1,22 @@
 'use server'
 import User from "@/models/users"
 import { checkAuth } from "./checkAuth"
+import {ObjectId} from 'mongodb'
 
-export const getUser = async (name: string) => {
+export const getUserByUsername = async (username: string) => {
     try {
-        const user = await User.findOne({ name: 'Piyush' })
+        const user = await User.findOne({ username })
+        return user;
+
+    }catch(err){
+        console.log(err)
+    }
+}
+export const getUserById = async (id: string) => {
+    try {
+        console.log('id', id)
+        const objectId = new ObjectId(id)
+        const user = await User.findOne({ _id: objectId })
         return user;
 
     }catch(err){

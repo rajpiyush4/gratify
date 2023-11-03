@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "models/users.js", "models/gratitude_enteries.js", "models/comments.js", "models/challenges.js", "models/likes.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "models/users.js", "models/gratitude_enteries.js", "models/comments.js", "models/challenges.js", "models/likes.js", "svgs/Svg.js"],
   "exclude": ["node_modules"]
 }

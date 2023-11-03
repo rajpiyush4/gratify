@@ -4,13 +4,17 @@ import GratitudeForm from "@/components/GratitudeForm"
 function page() {
 
     return (
-      <main className="fixed top-0 left-0 w-screen h-screen bg-black/5 flex justify-center items-center">
-        <ButtonCloseModal className='px-4 py-2 rounded-full font-sans bg-black text-white' >X</ButtonCloseModal>
-            <section className="min-w-[300px] w-1/3 bg-amber-200 h-1/2 border border-amber-50 rounded-md relative">
-              <GratitudeForm />
+      <main className="fixed z-50 top-0 left-0 w-screen h-screen bg-black/50 flex justify-center items-center">
+            <section className="shadow-static-custom min-w-[300px] flex flex-col gap-4 w-1/3 bg-white p-4 border border-amber-50
+             rounded-3xl relative">
+              <div className="flex justify-between items-center">
+               <ButtonCloseModal className='w-fit px-4 py-2 rounded-full font-sans'>X</ButtonCloseModal>
+                public/private
+              </div>
+              <GratitudeForm/>
             </section>
       </main>
     )
   }
-  
-  export default page
+
+export default page

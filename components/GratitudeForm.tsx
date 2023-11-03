@@ -1,25 +1,25 @@
 import { addGratitude } from "@/actions/gratitudeActions"
-import {redirect} from 'next/navigation'
+import { redirect } from 'next/navigation'
 import ButtonPost from "./ButtonPost"
 
 function GratitudeForm() {
 
     const handleForm = async (formData: FormData) => {
         'use server'
-        const content = formData.get('gratitude') 
+        const content = formData.get('gratitude')
         console.log(content)
         if (content) {
             const entry = await addGratitude(content, '')
         }
-        
-        redirect('/user/piyush')
+
+        redirect('/')
     }
 
     return (
-        <form action={handleForm} className="flex flex-col justify-between gap-4">
-            <textarea className="bg-amber-200" name="gratitude" id="" cols={30} rows={10} />
-            <div>
-                <ButtonPost/>
+        <form action={handleForm} className="flex flex-col h-[70%] py-4 justify-between gap-4">
+            <textarea autoFocus={true} className="resize-none  decoration-none w-[100%] h-full bg-transparent outline-none p-4" placeholder="Start writing!!!"  />
+            <div className="flex justify-end w-full">
+                <ButtonPost />
             </div>
         </form>
     )
