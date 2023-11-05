@@ -1,33 +1,36 @@
 import Gratitude from "@/models/gratitude_enteries";
 import { getUserByEmail } from "./userActions";
-import { ObjectId } from "mongoose";
 
 
-export const addGratitude =async (content: FormDataEntryValue | null, challengeId: string) => {
-
-    try{
-        const {_id=''}:{_id:string | null}= await getUserByEmail()
-        if(_id == '') {
-            throw new Error("wtf");
+export const addGratitude = async (content: FormDataEntryValue | null, isPublic:Boolean) => {
+    try {
+        const user = await getUserByEmail();
+        if (!user || !user._id) {
+            throw new Error("User not found or _id is missing.");
         }
-        const entry = Gratitude.create({
-            content,
-            userId: _id,
-            isPublic: true,
-            createdAt: new Date(Date.now()).toISOString(),
-            challengeId: challengeId
-        })
-        return entry
-    }catch(err){
-        console.log(err)
-    }
 
+        const entry = await Gratitude.create({
+            content,
+            username: user.username,
+            userImg: user.profileImg,
+            isPublic: isPublic,
+            createdAt: new Date(),
+            challengeId: null,
+            likes: 0
+        });
+
+        return entry;
+    } catch (err) {
+        console.error(err);
+        throw new Error("Error adding gratitude entry.");
+    }
 }
 
-export const getAllGratitudesByUserId =async(_id:string)=>{
+
+export const getAllGratitudesByUsername =async(username:string)=>{
 
     try{
-        const entries = await Gratitude.find({userId: _id})
+        const entries = await Gratitude.find({username})
         return entries
 
     }catch(err){
@@ -37,11 +40,13 @@ export const getAllGratitudesByUserId =async(_id:string)=>{
 }
 
 export const getPublicGratitudeById =async(_id:string)=>{
+    console.log(_id)
 
     try{
-        // let objectId = new ObjectId(_id)
-        // console.log("objectId", Object)
-        const entry = await Gratitude.findOne({_id})
+        const entry = await Gratitude.findOne({
+            _id,
+            isPublic: true
+        })
         return entry
 
     }catch(err){
@@ -50,13 +55,12 @@ export const getPublicGratitudeById =async(_id:string)=>{
     
 }
 
-export const getPublicGratitudesByUserId =async(_id:string)=>{
+export const getPublicGratitudesByUsername =async(username:string)=>{
      try{
         const enteries = await Gratitude.find({
-            userId: _id,
+            username,
             isPublic: true
         })
-        console.log(enteries, )
         return enteries;
 
      }catch(err){
@@ -71,4 +75,20 @@ export const getPublicEntries=async()=>{
      }catch(err){
         console.log(err)
      }
+}
+
+export const updateLikes = async(id: string) =>{
+    try {
+        const updatedLike = await Gratitude.findOneAndUpdate(
+          { _id: id },
+          { $inc: { likes: 1 } }, // Increment the 'likes' field by 1
+          { new: true } // Return the updated document
+        );
+    
+        return updatedLike;
+      } catch (err) {
+        console.error(err);
+        throw new Error("Error incrementing likes.");
+      }
+    
 }

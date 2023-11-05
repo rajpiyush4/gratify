@@ -1,21 +1,30 @@
+import { ObjectId } from "mongodb";
 import { Schema, model, models } from "mongoose";
 
 const CommentSchema = new Schema({
     //change ids type to ObjectId
     entryId:{
+        type: ObjectId
+    },
+    username:{
         type: String
     },
-    userId:{
-        type: String
+    userImg:{
+       type: String
     },
     content:{
         type: String
     },
     createdAt:{
-        type: String //change it to Date type
+        type: Date,
+        default: Date.now()
     },
     parentId:{
-        type: String
+        type: [ObjectId, null],
+        default: null 
+    },
+    likes:{
+        type:Number
     }
 
 })

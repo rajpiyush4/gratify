@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { Schema, model, models } from "mongoose";
 
 const GratitudeSchema = new Schema({
@@ -8,13 +9,21 @@ const GratitudeSchema = new Schema({
         type: Boolean
     },
     createdAt:{
+        type: Date,
+        default: Date.now()
+    },
+    username:{
         type: String
     },
-    userId:{
-        type: String,
+    userImg:{
+        type: String
     },
     challengeId:{
-        type: String
+        type: [ObjectId, null], 
+        default: null 
+    },
+    likes:{
+        type: Number
     }
 })
 

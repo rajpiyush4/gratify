@@ -1,37 +1,37 @@
 import { getUserByEmail, getUserByUsername } from "@/actions/userActions"
-import { getAllGratitudesByUserId, getPublicGratitudesByUserId } from "@/actions/gratitudeActions"
+import { getAllGratitudesByUsername, getPublicGratitudesByUsername } from "@/actions/gratitudeActions"
 import Image from "next/image"
 import { MessageCircle, Heart } from 'lucide-react'
 import Link from "next/link"
+import { User } from "@/lib/types"
 
-type User = {
-  name?: string | null | undefined,
-  image?: string | null | undefined,
-  email?: string | null | undefined
-}
+
 async function AddPost({ username }: { username: string }) {
   //get username if user is same as the logged one then show both public and private otherwise only public
-  let userByUsername;
-  let user: any;
+  let userByUsername: User;
+  let user: User;
   let entries;
   try {
 
     userByUsername = await getUserByUsername(username)
-    user = await getUserByEmail()
 
     if (userByUsername == null) {
       return <div>no such user exist</div>
     }
 
+    user = await getUserByEmail()
+
+  
+
     if (userByUsername?.username == user?.username) {
       //get gratitudes which are private and public both
       let id = userByUsername._id.toString()
-      entries = await getAllGratitudesByUserId(id)
+      entries = await getAllGratitudesByUsername(username)
     }
     else {
       //get only public gratitudes
       let id = userByUsername._id.toString()
-      entries = await getPublicGratitudesByUserId(id)
+      entries = await getPublicGratitudesByUsername(username)
 
     }
   } catch (err) {
@@ -52,10 +52,10 @@ async function AddPost({ username }: { username: string }) {
             return <div className="w-[90%] m-0 border-2 flex flex-col gap-8 p-4 rounded-md bg-blue-l/10" key={key}>
               <div className="flex justify-between">
                 <div className="flex gap-4 ">
-                  <Image className="rounded-full border border-black" src={user.profileImg} width={60} height={60} alt='user' />
+                  <Image className="rounded-full border border-black" src={`${userByUsername.profileImg || ''} `} width={60} height={60} alt='user' />
                   <div className="flex flex-col">
-                    <span>{user?.name}</span>
-                    <Link className="opacity-50" href={`/${user.username}`}>@{user.username}</Link>
+                    <span>{userByUsername?.name}</span>
+                    <Link className="opacity-50" href={`/${userByUsername.username}`}>@{userByUsername.username}</Link>
                   </div>
                 </div>
                 <div className="text-black/50">

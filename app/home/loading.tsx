@@ -1,7 +1,7 @@
 
 function Loading() {
   return (
-    <div>loading...</div>
+    <div className="h-screen grid place-content-center w-screen text-5xl">...</div>
   )
 }
 

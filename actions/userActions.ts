@@ -14,9 +14,7 @@ export const getUserByUsername = async (username: string) => {
 }
 export const getUserById = async (id: string) => {
     try {
-        console.log('id', id)
-        const objectId = new ObjectId(id)
-        const user = await User.findOne({ _id: objectId })
+        const user = await User.findOne({ _id: id })
         return user;
 
     }catch(err){
@@ -27,7 +25,7 @@ export const getUserById = async (id: string) => {
 export const getUserByEmail =async () => {
     const user = await checkAuth()
     if(!user) return Error('no user exists');
-
+    
     try{
         const userDB = await User.findOne({email: user?.email})
         return userDB

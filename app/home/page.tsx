@@ -1,12 +1,11 @@
 import Link from "next/link"
 import { getPublicEntries } from "@/actions/gratitudeActions"
-import { getUserByEmail } from "@/actions/userActions"
 import { Plus } from 'lucide-react'
 import Post from "@/components/PostLayout/Post"
 
 async function home() {
   const entries = await getPublicEntries()
-  const user = await getUserByEmail()
+  // const user = await getUserByEmail()  // problem1 check if entries null or empty if so doesn't need to call getUserById . problem2 that entries an array and i have to fetch user data for every single element in the arr
 
   //find all public feeds -- gratitude enteries that are public
   return (
@@ -22,12 +21,9 @@ async function home() {
         <article className="h-screen pb-4 bg-white-l flex relative flex-col gap-4 overflow-y-scroll scroll_none mt-12">
 
           {entries?.map((entry, key: number) => {
-            if (entry.isPublic) {
               return (
-                <Post entry={entry} key={key} user={user} />
-              )
-            }
-          })
+                <Post entry={entry} key={key} />
+              )})
           }
 
         </article>
