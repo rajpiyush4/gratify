@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base{
     html{
         @apply bg-white-l
@@ -9,6 +11,10 @@
     button{
         @apply font-mono
     }
+}
+
+.font-gill{
+    font-family: 'gill-sans-ultra-bold-condensed-regular', sans-serif !important;
 }
 
 .shadow-custom{

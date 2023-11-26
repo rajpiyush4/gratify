@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { Schema, models, model } from "mongoose";
 
 const UserSchema = new Schema({
@@ -17,6 +18,18 @@ const UserSchema = new Schema({
     },
     bio: {
         type: String
+    },
+    activeChallenge:{
+        type: ObjectId,
+        default: null
+    },
+    lastActivityDate:{
+        type: Date,
+        default: null
+    },
+    streakCount:{
+        type: Number,
+        default: 0
     }
 })
 

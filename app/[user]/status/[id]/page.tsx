@@ -16,13 +16,9 @@ async function page({ params }: { params: { user: string, id: string } }) {
                 <span className="px-4 py-2 w-full block font-fantasy text-3xl font-semibold">Comments</span>
             </div>
 
-            {comments == null || comments.length == 0 ? <div className=' bg-white flex flex-col gap-2 rounded-md p-4'>
-                <p>No comments yet </p>
-
+            <div className='flex flex-col bg-white gap-4 p-4 overflow-y-scroll h-screen'>
                 <AddComment entryId={params.id} username={params.user} parentId={null} />
-                {/* //add overflow */}
-            </div> : <div className='lex flex-col bg-white-d gap-4 overflow-y-scroll h-screen'>
-                {comments?.map((comment: any, key: number) => <div className='bg-white flex flex-col gap-2 rounded-md p-4' key={key}>
+                {comments?.map((comment: any, key: number) => <div className='bg-white flex flex-col border-2 gap-2 p-4 rounded-md' key={key}>
                     <div>{entry?.content}</div>
                     <Link href={`/${comment.username}`} className='w-fit font-semibold text-sm'>{comment.username}</Link>
                     <p>{comment.content}</p>
@@ -32,7 +28,7 @@ async function page({ params }: { params: { user: string, id: string } }) {
                 </div>
 
                 )}
-            </div>}
+            </div>
         </div>
     )
 }

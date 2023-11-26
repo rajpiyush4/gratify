@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        lilita: ['var(--font-lilita)'],
+      },
       colors: {
         'white-l': '#FCEEE3',
         'white-d': '#D9D9D9',

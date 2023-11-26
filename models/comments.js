@@ -20,7 +20,7 @@ const CommentSchema = new Schema({
         default: Date.now()
     },
     parentId:{
-        type: [ObjectId, null],
+        type: ObjectId,
         default: null 
     },
     likes:{

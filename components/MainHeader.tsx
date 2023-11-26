@@ -5,6 +5,7 @@ import Signin from "./Signin"
 import SignOut from "./SignOut"
 import { Globe, User2, Zap, BadgePlus } from 'lucide-react'
 import { getUserByEmail } from "@/actions/userActions"
+import Image from 'next/image'
 
 
 async function MainHeader() {
@@ -16,8 +17,8 @@ async function MainHeader() {
 
             <div className="h-full flex gap-8 items-center">
 
-                <div className="h-full  ">
-                    <Link className="text-lg h-full px-8 flex gap-1 items-center text-blue-l" href='/home'><span className="text-5xl font-bold text-blue-l">G</span></Link>
+                <div className="h-full">
+                    <Link className="text-lg h-full px-8 flex gap-1 items-center text-blue-l" href='/home'><span className="text-3xl font-extrabold font-abff text-blue-l"><Image src={'/logo.png'} width={50} height={50} alt="hero" /></span></Link>
 
                 </div>
 

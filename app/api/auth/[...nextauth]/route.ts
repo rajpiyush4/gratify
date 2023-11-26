@@ -49,8 +49,8 @@ export const authOptions: AuthOptions = ({
             name: profile?.name,
             email: profile?.email,
             profileImg: profile?.picture,
-            bio: "I'm a person",
-            username: `${firstname?.toLowerCase()}${encoded}`
+            bio: "Hey!!",
+            username: `${firstname?.toLowerCase()}${encoded}`,
           })
           
         }

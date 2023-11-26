@@ -45,3 +45,7 @@ export const getUsers = async () =>{
 
 }
 
+export const blockUser = async ()=>{
+    
+}
+

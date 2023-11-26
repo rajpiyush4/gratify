@@ -9,16 +9,16 @@ async function home() {
 
   //find all public feeds -- gratitude enteries that are public
   return (
-      <div className="w-full relative bg-white-l ">
+      <div className="w-full relative ">
         <div className="fixed z-10 bottom-5 right-10 px-4 py-4 rounded-md bg-pink-d">
-          <Link href={'/compose/post'}><Plus color="black" /></Link>
+          <Link href={'/compose/post?public=false'}><Plus color="black" /></Link>
         </div>
         <div className="text-center">
-          <span className=" my-2 w-full block text-blue-l font-bold text-3xl font-fantasy ">Neighbourhood Nexus </span>
+          <span className=" my-2 w-full block text-blue-l font-bold text-3xl font-lilita ">Neighbourhood Nexus </span>
           <span className="w-full block text-pink-d font-semibold ">Discover the positive contributions of others in this community.</span>
         </div>
 
-        <article className="h-screen pb-4 bg-white-l flex relative flex-col gap-4 overflow-y-scroll scroll_none mt-12">
+        <article className="h-screen pb-4  flex relative flex-col gap-4 overflow-y-scroll scroll_none mt-12">
 
           {entries?.map((entry, key: number) => {
               return (

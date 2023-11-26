@@ -1,17 +1,17 @@
 import { Schema, model, models } from "mongoose";
 
 const ChallengeSchema = new Schema({
-    discription:{
+    description:{
         type: String
     },
     date:{
-        type: String
+        type: Date
     }
 
 })
 
 
-const Challenge = models.Challenges || model("challenges", ChallengeSchema)
+const Challenge = models.challenges || model("challenges", ChallengeSchema)
 
 
 export default Challenge;

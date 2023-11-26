@@ -19,7 +19,7 @@ const GratitudeSchema = new Schema({
         type: String
     },
     challengeId:{
-        type: [ObjectId, null], 
+        type: ObjectId, 
         default: null 
     },
     likes:{
